@@ -20,7 +20,7 @@
 	require_once("../controlador/controlador_iniciar_sessio.php");
 	?>
 	<header>
-		<h2>Pt_04_Martín_Jaime</h2>
+		<h2>Pt_04_Martín_Jaime </h2>
 		<?php 
 		mostrarUser();
 		?>

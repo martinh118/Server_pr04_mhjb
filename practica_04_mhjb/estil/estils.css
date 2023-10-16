@@ -21,6 +21,12 @@ header h2{
 	
 }
 
+header h3{
+	padding-right: 10px;
+	width: 100px;
+	
+}
+
 header a{
 	display: inline-block;
 	font-family: 'Open Sans Condensed', sans-serif;

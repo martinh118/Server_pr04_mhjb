@@ -16,7 +16,7 @@ function mostrarUser(){
     $_SESSION["usuario"] = $_POST["nom"];
     $user = $_SESSION["usuario"];
 
-    $html = "<p> $user</p>";
+    $html = "<h3> $user </h3>";
 
     echo $html;
 
@@ -115,19 +115,19 @@ function crearPaginacion($paginas, $numPagina)
         $retro = $numPagina - 1;
         $avan = $numPagina + 1;
         if ($numPagina == 1) {
-            $paginacionInput = "<div><section class='paginacio'><ul><li ><a data-disabled='true' class='disabled-link' href='../controlador/controlador_martin_jaime.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
-        } else $paginacionInput = "<div><section class='paginacio'><ul><li ><a href='../controlador/controlador_martin_jaime.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
+            $paginacionInput = "<div><section class='paginacio'><ul><li ><a data-disabled='true' class='disabled-link' href='../controlador/controlador_iniciar_sessio.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
+        } else $paginacionInput = "<div><section class='paginacio'><ul><li ><a href='../controlador/controlador_iniciar_sessio.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
 
 
         for ($i = 1; $i <= $paginas; $i++) {
             if ($numPagina == $i) {
-                $paginacionInput .= "<li class='active'><a href='../controlador/controlador_martin_jaime.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
-            } else $paginacionInput .= "<li><a href='../controlador/controlador_martin_jaime.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
+                $paginacionInput .= "<li class='active'><a href='../controlador/controlador_iniciar_sessio.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
+            } else $paginacionInput .= "<li><a href='../controlador/controlador_iniciar_sessio.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
         }
 
         if ($numPagina == $paginas) {
-            $paginacionInput .= "<li data-disabled='true' class='disabled-link'><a href='../controlador/controlador_martin_jaime.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
-        } else $paginacionInput .= "<li><a href='../controlador/controlador_martin_jaime.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
+            $paginacionInput .= "<li data-disabled='true' class='disabled-link'><a href='../controlador/controlador_iniciar_sessio.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
+        } else $paginacionInput .= "<li><a href='../controlador/controlador_iniciar_sessio.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
 
 
         echo $paginacionInput;
