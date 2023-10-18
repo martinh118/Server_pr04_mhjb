@@ -5,7 +5,7 @@
  * @version 1.0
  */
 
-require_once("../model/modelo_martin_jaime.php");
+require_once("../model/modelo_principal.php");
 require_once("../vista/index.vista.php");
 
 /**
@@ -18,8 +18,8 @@ function iniciar()
         $conexion = conectar();
 
         if ($conexion) {
-           $cantidadPagina = 5;
-            
+            $cantidadPagina = 5;
+
 
             $total_paginas = calcularPaginas($conexion,  $cantidadPagina);
             if (empty($_GET["pagina"]) || $_GET["pagina"] >  $total_paginas || $_GET["pagina"] <  1) {
@@ -29,9 +29,9 @@ function iniciar()
             }
             //echo "Se muestran páginas de " . $cantidadPagina . " registros cada una<br>";
             //echo "Mostrando la página " . $pagina . " de " . $total_paginas . "<p>";
-            
 
-            
+
+
             mostrarArts($conexion, $cantidadPagina, $pagina);
             crearPaginacion($total_paginas, $pagina);
 
@@ -66,7 +66,7 @@ function calcularPaginas($conexion,  $cantidadPagina)
 {
     try {
         // definim quants post per pagina volem carregar.
-        $articles = seleccionarTodo($conexion);
+        $articles = seleccionarArticulos($conexion);
         $articles = $articles->fetchAll();
 
         return ceil(count($articles) / $cantidadPagina);
@@ -134,16 +134,16 @@ function mostrarArts($conect, $CANTIDAD, $pag)
         $INICIO = ($CANTIDAD * $pag) - $CANTIDAD;
         $FINAL = $CANTIDAD * $pag;
 
-        $statement = seleccionarRango($conect, $INICIO, $FINAL);
+        $statement = seleccionarRangoArt($conect, $INICIO, $FINAL);
         $articulos = $statement->fetchAll();
-        
-        if(empty($articulos)){
-            ?>
+
+        if (empty($articulos)) {
+?>
             <script>
                 location.replace("../vista/index.vista.php");
             </script>
-            <?php
-        }else {
+<?php
+        } else {
             $articulosInput = "<section class='articles'><ul>";
             foreach ($articulos as $a) {
                 $articulosInput .= "<li>" . $a['ID'] . ".- " . $a['article'] . "</li>";
@@ -151,8 +151,6 @@ function mostrarArts($conect, $CANTIDAD, $pag)
             $articulosInput .= "</ul></section>";
             echo $articulosInput;
         }
-
-        
     } catch (PDOException $e) { //
         // mostrarem els errors
         echo "Error: " . $e->getMessage();

@@ -1,11 +1,25 @@
 *{box-sizing:border-box;}
 
-form{
+form#firstForm{
 	width:300px;
 	padding:16px;
-	border-radius:10px;
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;
 	margin:auto;
 	background-color:rgb(147, 204, 241);
+}
+
+form#secondForm{
+	width:300px;
+	padding:16px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin:auto;
+	background-color:rgb(147, 204, 241);
+}
+
+form#secondForm input{
+	margin-top: -12px;
 }
 
 form label{
@@ -25,7 +39,8 @@ form input[type="email"]{
 	display:inline-block;
 }
 
-form input[type="submit"]{
+form input[type="submit"],
+button{
 	width:100%;
 	padding:8px 16px;
 	margin-top:32px;
