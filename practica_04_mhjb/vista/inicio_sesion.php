@@ -36,6 +36,15 @@
             </div>
 
             <div>
+                <label>* Repetir Contrasenya</label>
+                <div>
+                    <!-- Valor d'entrada amb el nom 'contra'. El value que conté dades php fa que en cas que detecti el valor d''contra' amb la funció isset,
+                    mostrarà el valor, en cas contrari mostra null (el valor estarà buit)  -->
+                    <input type="password" name="reContra" value="<?php echo isset($_POST['reContra']) ? $_POST['reContra']  : null; ?>">
+                </div>
+            </div>
+
+            <div>
                 <div>
                     <!-- Botó d'enviar la informació. Un cop clicat executarà l'arxiu 'controlador.php' especificat en action a l'obertura de l'etiqueta form-->
                     <input type="submit">
@@ -48,7 +57,13 @@
 
         <form action="../vista/index.vista.php" id="secondForm">
             <div>
-                <input type="submit" value="Retornar">
+                <input type="submit" value="Inici">
+            </div>
+        </form>
+
+        <form action="../vista/registro.php" id="thirthForm">
+            <div>
+                <input type="submit" value="Encara no tens compte?">
             </div>
         </form>
     </div>

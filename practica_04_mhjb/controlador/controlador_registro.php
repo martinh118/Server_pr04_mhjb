@@ -19,9 +19,10 @@ function comprobarRegistro()
             if ($errors == "") {
                 $nombre = $_POST['nom'];
                 $email = $_POST['email'];
-                $contra = hash("sha512","prueba");
+                $contra = hash("sha512",$_POST['contra']);
                 vaciarCampos();
                 registrarUsuario($conect, $nombre, $email, $contra);
+                
             } else echo $errors;
         } else return false;
     } catch (PDOException $e) { //
@@ -39,7 +40,7 @@ function comprobarExistenciaNombre($con, $nom)
     $results = seleccionarUsuarios($con) -> fetchAll();
     foreach ($results as $user) {
         if ($user['nom_usuari'] == $nom) {
-            return "Ya existe un usuario con ese nombre.<br><br>";
+            return "Ja existeix un usuari amb aquest nom.<br><br>";
         }
         return "";
     }
@@ -50,7 +51,7 @@ function comprobarExistenciaEmail($con, $email)
     $results = seleccionarUsuarios($con)-> fetchAll();
     foreach ($results as $user) {
         if ($user['email_usuari'] == $email) {
-            return "Este correo electronico ya está registrado.<br><br>";
+            return "Aquest correu electronic ja està enregistrat.<br><br>";
         }
         return "";
     }
@@ -88,18 +89,7 @@ comprobarRegistro();
 <?php
 function vaciarCampos()
 {
-?>
 
-    <script>
-        document.getElementsByName("nom").value = null;
-        document.getElementsByName("email").value = null;
-        document.getElementsByName("reEmail").value = null;
-        document.getElementsByName("contra").value = null;
-        document.getElementsByName("reContra").value = null;
-    </script>
-
-
-<?php
 }
 
 

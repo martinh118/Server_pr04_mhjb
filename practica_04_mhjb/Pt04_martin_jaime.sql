@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `articles`(
 
 
 CREATE TABLE IF NOT EXISTS `users`(
-    ID MEDIUMINT NOT NULL,
+    ID MEDIUMINT NOT NULL AUTO_INCREMENT,
     nom_usuari text NOT NULL,
     email_usuari text NOT NULL,
     contra VARCHAR(512) NOT NULL,

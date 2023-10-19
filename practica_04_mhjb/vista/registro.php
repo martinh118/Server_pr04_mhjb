@@ -22,7 +22,7 @@
                 <div>
                     <!-- Valor d'entrada amb el nom 'nom'. El value que conté dades php fa que en cas que detecti el valor de 'nom' amb la funció isset,
                         mostrarà el valor, en cas contrari mostra null (el valor estarà buit)  -->
-                    <input type="text" name="nom" value="<?php echo isset($_POST['nom']) ? $_POST['nom']  : null; ?>">
+                    <input type="text" name="nom" id="nom" value="<?php echo isset($_POST['nom']) ? $_POST['nom']  : null; ?>">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <div>
                     <!-- Valor d'entrada amb el nom 'email'. El value que conté dades php fa que en cas que detecti el valor d''email' amb la funció isset,
                     mostrarà el valor, en cas contrari mostra null (el valor estarà buit)  -->
-                    <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email']  : null; ?>">
+                    <input type="email" name="email" id="email" value="<?php echo isset($_POST['email']) ? $_POST['email']  : null; ?>" >
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                 <div>
                     <!-- Valor d'entrada amb el nom 'email'. El value que conté dades php fa que en cas que detecti el valor d''email' amb la funció isset,
                     mostrarà el valor, en cas contrari mostra null (el valor estarà buit)  -->
-                    <input type="email" name="reEmail" value="<?php echo isset($_POST['reEmail']) ? $_POST['reEmail']  : null; ?>">
+                    <input type="email" name="reEmail" id="reEmail" value="<?php echo isset($_POST['reEmail']) ? $_POST['reEmail']  : null; ?>">
                 </div>
             </div>
 
@@ -74,7 +74,13 @@
 
         <form action="../vista/index.vista.php" id="secondForm">
             <div>
-                <input type="submit" value="Retornar">
+                <input type="submit" value="Inici">
+            </div>
+        </form>
+
+        <form action="../vista/inicio_sesion.php" id="thirthForm">
+            <div>
+                <input type="submit" value="Ja tens compte?">
             </div>
         </form>
     </div>

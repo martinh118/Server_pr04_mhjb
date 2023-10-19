@@ -17,13 +17,13 @@
 	 */
 
 	
-	require_once("../controlador/controlador_iniciar_sessio.php");
+	require_once("../controlador/controlador_sesion_iniciada.php");
+	
 	?>
 	<header>
 		<h2>Pt_04_Martín_Jaime </h2>
-		<?php 
-		mostrarUser();
-		?>
+		
+		<h3> <?php mostrarNombre(); ?> </h3>
 		<a href="../vista/index.vista.php">TANCAR SESSIÓ</a>
 	</header>
 
@@ -35,7 +35,7 @@
 		/**
 		 * A partir de fer un require_once de l'arxiu controlador, executa la funció per mostrar tots els articles i la paginació.
 		 */
-		iniciar();
+		iniciarPagina();
 		?>
 
 	</div>
