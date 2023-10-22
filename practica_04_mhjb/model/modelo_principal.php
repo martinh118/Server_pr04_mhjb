@@ -24,6 +24,11 @@ function conectar()
 ?>
 
 <?php
+/**
+ * A partir d'una comanda SQL, selecciona tots els usuaris seleccionats en la taula users de la base de dades.
+ * @param connexio: Connexió a la Base de Dades.
+ * @return statement: Lista array amb tots els usuaris seleccionats.
+ */
 function seleccionarUsuarios($connexio)
 {
     try {

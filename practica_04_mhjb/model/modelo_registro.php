@@ -1,8 +1,18 @@
 
 
 <?php
+/**
+ * @author Martin H. Jaime Bonvin
+ * @version 2.0
+ */
 require_once("../model/modelo_principal.php");
 
+/**
+ * Selecciona totes les dades de l'usuari especific pasat com a parametre d'entrada.
+ * @param connexio: Connexió a la Base de Dades.
+ * @param nom: Nom de l'usuari.
+ * @return statement: retorna les dades de l'usuari seleccionat.
+ */
 function selectUsuario($connexio, $nom){
     try {
         
@@ -22,6 +32,15 @@ function selectUsuario($connexio, $nom){
     }
 }
 
+
+/**
+ * Insereix les dades de l'usuari a la taula 'users' de la base de dades. En cas que sigui correcte, mostra un missatge.
+ * @param connexio: Connexió a la Base de Dades.
+ * @param nom: Nom de l'usuari.
+ * @param email: Correu electronic de l'usuari.
+ * @param contra: Contrasenya de l'usuari
+ * 
+ */
 function registrarUsuario($connexio, $nom, $email, $contra){
     try {
         
@@ -44,18 +63,15 @@ function registrarUsuario($connexio, $nom, $email, $contra){
 
 }
 
-function getID($connexio){
-    try {
-        $statement = $connexio->prepare('SELECT MAX(ID)+1 as id FROM users');
-        $statement->execute();
-        return $statement;
-    } catch (PDOException $e) { //
-        // mostrarem els errors
-        echo "Error: " . $e->getMessage();
-    }
-}
-
-
+/**
+ * Quan usuari és registrat es crea una columna a articles amb el nom i l'id de l'usuari registrat.
+ * El nom de la columna és la suma del nom i l'id perquè si es registra un usuari amb el mateix nom i diferents majúscules o minúscules, la columna no es podrà crear.
+ * Com a valor per defecte és el número 1.
+ * 
+ * @param connexio: Connexió a la Base de Dades.
+ * @param id: id de l'usuari de la taula 'users'.
+ * @param nom: nom de l'usuari.
+ */
 function añadirColumn($connexio, $id, $nom){
 
     try {
