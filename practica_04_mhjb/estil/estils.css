@@ -113,3 +113,7 @@ h1 {
 	pointer-events: none; /* Deshabilita los eventos de puntero */
 	color: gray; /* Cambia el color para indicar visualmente que está deshabilitado */
 }
+
+a#equis{
+	margin-left: 0%;
+}

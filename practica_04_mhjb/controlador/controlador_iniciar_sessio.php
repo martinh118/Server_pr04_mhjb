@@ -2,14 +2,19 @@
 
 /**
  * @author Martín Hernan Jaime Bonvin
- * @version 1.0
+ * @version 2.0
  */
 
 require_once("../model/modelo_principal.php");
 require_once("../model/modelo_registro.php");
+require_once("../model/modelo_sesion_iniciada.php");
 require_once("../vista/inicio_sesion.php");
 define('espaciado', "<br><br>");
 
+/**
+ * Fa les comprovacions necessàries a l'hora d'iniciar sessió.
+ * En cas que estigui tot correcte, carrega l'arxiu amb l'usuari inicialitzat.
+ */
 function comprobarExistencia(){
 
     try {
@@ -19,7 +24,7 @@ function comprobarExistencia(){
 
             $errors .= comprobarDatosVaciosSesion();
             $errors .= comprobarExistenciaNombreSesion($conect, $_POST['nom']);
-            $errors .= comprobarExistenciaContraSesion($conect, $_POST['contra']);
+            $errors .= comprobarExistenciaContraSesion($conect, $_POST['contra'], $_POST['nom']);
 
             if ($errors == "") {
                 $nom = $_POST['nom'];
@@ -30,6 +35,7 @@ function comprobarExistencia(){
                 </script>
                 EOT;
                 session_start();
+                $user = selectUsuario($conect, $nom) -> fetchAll();
                 $_SESSION["usuario"] = $nom;
 
                 echo($script);
@@ -46,19 +52,41 @@ function comprobarExistencia(){
 
 <?php
 
-function comprobarExistenciaContraSesion($con, $contra)
-{
-    $contra = hash("sha512", $contra);
-    $results = seleccionarUsuarios($con)-> fetchAll();
-    foreach ($results as $user) {
-        if ($user['contra'] == $contra) {
-            return "";
+/**
+ * Fa la comprovació que la contrasenya sigui la correcta a partir de password_verify.
+ * @param con: Connexió a la Base de Dades.
+ * @param contra: Contrasenya a comprovar.
+ * @param nom: Nom d'usuari a comprovar.
+ */
+function comprobarExistenciaContraSesion($con, $contra, $nom)
+{   
+    try{
+        
+        if(empty(selectUsuario($con, $nom))){
+            return;
+        }else {
+            $results = selectUsuario($con, $nom)-> fetchAll();
+            foreach ($results as $user) {
+                if(password_verify( $contra ,$user['contra'])){
+                    return "";
+                }
+                
+            }
+            return "La contrasenya no es la correcta.<br><br>";
         }
         
+        
+    }catch(PDOException $e){
+        echo "Error al iniciar sessió.";
     }
-    return "La contrasenya no es la correcta.<br><br>";
+   
 }
 
+/**
+ * Fa la comprovació que el nom sigui el correcte.
+ * @param con: Connexió a la Base de Dades.
+ * @param nom: Nom d'usuari a comprovar.
+ */
 function comprobarExistenciaNombreSesion($con, $nom)
 {
     $results = seleccionarUsuarios($con) -> fetchAll();
@@ -71,6 +99,10 @@ function comprobarExistenciaNombreSesion($con, $nom)
     return "No existeix cap usuari amb aquest nom.<br><br>";
 }
 
+
+/**
+ * Comprova que no hi hagi cap camp buit.
+ */
 function comprobarDatosVaciosSesion()
 {
     $errors = "";

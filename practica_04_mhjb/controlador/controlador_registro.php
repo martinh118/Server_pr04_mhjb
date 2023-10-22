@@ -1,9 +1,18 @@
 <?php
+
+/**
+ * @author Martín Hernan Jaime Bonvin
+ * @version 2.0
+ */
+
 require_once("../vista/registro.php");
 require_once("../model/modelo_registro.php");
 require_once("../model/modelo_principal.php");
 define('espaciado', "<br><br>");
 
+/**
+ * Fa les comprovacions necessàries per poder executar l'enregistrament.
+ */
 function comprobarRegistro()
 {
 
@@ -19,9 +28,13 @@ function comprobarRegistro()
             if ($errors == "") {
                 $nombre = $_POST['nom'];
                 $email = $_POST['email'];
-                $contra = hash("sha512",$_POST['contra']);
+                $contra = password_hash($_POST['contra'], PASSWORD_DEFAULT);
                 vaciarCampos();
                 registrarUsuario($conect, $nombre, $email, $contra);
+
+
+                $id =  getIDUser($conect, $nombre);
+                añadirColumn($conect, $id, $nombre);
                 
             } else echo $errors;
         } else return false;
@@ -34,7 +47,28 @@ function comprobarRegistro()
 
 <?php
 
+/**
+ * Funció feta per obtenir l'id de l'usuari en la base de dades.
+ * @param connexio: Connexió a la Base de Dades.
+ * @param nom: nom de l'usuari registrat.
+ * @return user['ID']: Retorna l'id del nom d'usuari passat com a paràmetre d'entrada. En cas de que no el trobi, no retorna res.
+ */
+function getIDUser($connexio, $nom){
+    $results = selectUsuario($connexio, $nom)-> fetchAll();
+    foreach ($results as $user) {
+        if ($user['nom_usuari'] == $nom) {
+            return $user['ID'];
+        }
+        return "";
+    }
+}
 
+/**
+ * Fa la comprovació de l'existència de nom d'usuari.
+ * @param con: Connexió a la Base de Dades.
+ * @param nom: Nom d'usuari.
+ * @return: Si troba el nom d'usuari aplicat retorna el text d'error, en cas contrari no retorna res.
+ */
 function comprobarExistenciaNombre($con, $nom)
 {
     $results = seleccionarUsuarios($con) -> fetchAll();
@@ -46,6 +80,12 @@ function comprobarExistenciaNombre($con, $nom)
     }
 }
 
+/**
+ * Fa la comprovació de l'existència del correu electronic.
+ * @param con: Connexió a la Base de Dades.
+ * @param email: Correu electronic aplicat.
+ * @return: Si troba el correu electronic aplicat retorna el text d'error, en cas contrari no retorna res.
+ */
 function comprobarExistenciaEmail($con, $email)
 {
     $results = seleccionarUsuarios($con)-> fetchAll();
@@ -60,6 +100,9 @@ function comprobarExistenciaEmail($con, $email)
 
 <?php
 
+/**
+ * Comprova que no hi hagi cap camp buit.
+ */
 function comprobarDatosVacios()
 {
     $errors = "";

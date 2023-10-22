@@ -3,6 +3,25 @@
 <?php
 require_once("../model/modelo_principal.php");
 
+function selectUsuario($connexio, $nom){
+    try {
+        
+        $statement = $connexio->prepare('SELECT * FROM users WHERE nom_usuari = :nom');
+        if ( !empty($nom)) {
+            $statement->execute(
+                array(
+                    
+                    ':nom' => $nom
+                )
+            );
+            return $statement;
+        } else return;
+    } catch (PDOException $e) { //
+        // mostrarem els errors
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 function registrarUsuario($connexio, $nom, $email, $contra){
     try {
         
@@ -16,8 +35,8 @@ function registrarUsuario($connexio, $nom, $email, $contra){
                     ':contra' => $contra
                 )
             );
-            echo "El usuario se ha registrado correctamente";
-        } else echo "Error al registrar usuario";
+            echo "El usuario se ha registrado correctamente<br><br>";
+        } else echo "Error al registrar usuario<br><br>";
     } catch (PDOException $e) { //
         // mostrarem els errors
         echo "Error: " . $e->getMessage();
@@ -35,3 +54,22 @@ function getID($connexio){
         echo "Error: " . $e->getMessage();
     }
 }
+
+
+function añadirColumn($connexio, $id, $nom){
+
+    try {
+        
+        $statement = $connexio->prepare('ALTER TABLE articles ADD '.$nom .$id.' tinyint(1) DEFAULT 1');
+        if ( !empty($id)) {
+            $statement->execute(
+            );
+            echo "columna creada.";
+        } else echo "columna no creada";
+    } catch (PDOException $e) { //
+        // mostrarem els errors
+        echo "Error: " . $e->getMessage();
+    }
+
+}
+?>

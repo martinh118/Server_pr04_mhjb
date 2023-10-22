@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @author Martín Hernan Jaime Bonvin
- * @version 1.0
+ * @author Martín H. Jaime Bonvin
+ * @version 2.0
  */
 
 

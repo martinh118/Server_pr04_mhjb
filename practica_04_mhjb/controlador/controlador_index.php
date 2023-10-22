@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @author Martín Hernan Jaime Bonvin
- * @version 1.0
+ * @author Martín H. Jaime Bonvin
+ * @version 2.0
  */
 
 require_once("../model/modelo_principal.php");
@@ -27,8 +27,7 @@ function iniciar()
             } else {
                 $pagina = $_GET["pagina"];
             }
-            //echo "Se muestran páginas de " . $cantidadPagina . " registros cada una<br>";
-            //echo "Mostrando la página " . $pagina . " de " . $total_paginas . "<p>";
+
 
 
 
@@ -93,19 +92,19 @@ function crearPaginacion($paginas, $numPagina)
         $retro = $numPagina - 1;
         $avan = $numPagina + 1;
         if ($numPagina == 1) {
-            $paginacionInput = "<div><section class='paginacio'><ul><li ><a data-disabled='true' class='disabled-link' href='../controlador/controlador_index.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
-        } else $paginacionInput = "<div><section class='paginacio'><ul><li ><a href='../controlador/controlador_index.php?pagina=" . $retro  . "'name='pagina'>&laquo;</a></li>";
+            $paginacionInput = "<div><section class='paginacio'><ul><li ><a data-disabled='true' class='disabled-link' href='../controlador/controlador_index.php?pagina=" . $retro  . "'>&laquo;</a></li>";
+        } else $paginacionInput = "<div><section class='paginacio'><ul><li ><a href='../controlador/controlador_index.php?pagina=" . $retro  . "'>&laquo;</a></li>";
 
 
         for ($i = 1; $i <= $paginas; $i++) {
             if ($numPagina == $i) {
-                $paginacionInput .= "<li class='active'><a href='../controlador/controlador_index.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
-            } else $paginacionInput .= "<li><a href='../controlador/controlador_index.php?pagina=" . $i  . "'name='pagina' >" . $i . "</a></li>";
+                $paginacionInput .= "<li class='active'><a href='../controlador/controlador_index.php?pagina=" . $i  . "' >" . $i . "</a></li>";
+            } else $paginacionInput .= "<li><a href='../controlador/controlador_index.php?pagina=" . $i  . "' >" . $i . "</a></li>";
         }
 
         if ($numPagina == $paginas) {
-            $paginacionInput .= "<li data-disabled='true' class='disabled-link'><a href='../controlador/controlador_index.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
-        } else $paginacionInput .= "<li><a href='../controlador/controlador_index.php?pagina=" . $avan  . "'name='pagina'>&raquo;</a></li></ul></section></div>";
+            $paginacionInput .= "<li data-disabled='true' class='disabled-link'><a href='../controlador/controlador_index.php?pagina=" . $avan  . "'>&raquo;</a></li></ul></section></div>";
+        } else $paginacionInput .= "<li><a href='../controlador/controlador_index.php?pagina=" . $avan  . "'>&raquo;</a></li></ul></section></div>";
 
 
         echo $paginacionInput;

@@ -31,7 +31,7 @@
 		<h1>Articles</h1>
 
 		<?php
-		
+
 		/**
 		 * A partir de fer un require_once de l'arxiu controlador, executa la funció per mostrar tots els articles i la paginació.
 		 */
