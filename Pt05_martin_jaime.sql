@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS `users`(
     PRIMARY KEY (ID)
 );
 
-INSERT INTO `articles`(`ID`, `article`, `autor`) VALUES 
+INSERT INTO `articles`(`ID`, `article`, `autor`) VALUES
+(0, '¡Hola mundo!', 'public'), 
 (1,'Voy a hacerle una oferta que no podrá rechazar', 'public'),
 (2,'Que la fuerza te acompañe', 'public'),
 (3,'¿Hablas conmigo?', 'public'),

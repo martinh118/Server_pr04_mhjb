@@ -231,7 +231,7 @@ function mostrarArtsUsers($arts, $pag)
                 if ($a['autor'] == $_SESSION['usuario']) {
                     $articulosInput .= "<li><strong> " . $a['ID'] . ".- </strong>" . $a['article'] . " ( <strong>" . $a['autor'] . " </strong>)";
                     $articulosInput .= "&nbsp&nbsp<button><a  href='../controlador/controlador_sesion_iniciada.php?pagina=" . $pag . "&id= " . $a['ID'] . "&edit=" . "borrar" . "'>Borrar</a></button> &nbsp&nbsp";
-                    $articulosInput .= "<button><a href='../controlador/controlador_sesion_iniciada.php?pagina=" . $pag . "&id= " . $a['ID'] . "&edit=" . "borrar" . "'>Editar</a></button>";
+                    $articulosInput .= "<button><a href='../vista/editar_articulo.php?id= " . $a['ID']. "'>Editar</a></button>";
                     $articulosInput .= "</li>";
                 }
             }

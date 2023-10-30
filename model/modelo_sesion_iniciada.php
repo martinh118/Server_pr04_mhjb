@@ -4,6 +4,7 @@
  * @version 2.0
  */
 
+ require_once("../model/modelo_principal.php");
 /**
  * Mostra els articles amb els rangs de números corresponents i que el valor de la columna de l'usuari sigui 1.
  * @param connexio: Connexió a la Base de Dades.
@@ -83,7 +84,7 @@ function editarArticulo($idart, $article){
         $statement = $connexio->prepare('UPDATE articles SET article = :article WHERE id = :id');
         $statement->execute(
             array(
-                ':idart' =>$idart,
+                ':id' =>$idart,
                 ':article' => $article
             )
         );
