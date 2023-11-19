@@ -93,7 +93,7 @@ function enviarCorreo($correo, $nombre, $token){
         </head>
         <body>
             <h3>Link per recuperar contrasenya: </h3>
-            <a href='http://localhost/practiques/UF2/practica_05_mhjb/vista/cambiar_contraseña.php?token=$token&email=$correo'> Click aquí per recuperar contrasenya.</a>
+            <a href='http://localhost/practiques/UF2/practica_05_mhjb/controlador/controlador_cambiar_contraseña.php?token=$token&email=$correo'> Click aquí per recuperar contrasenya.</a>
         </body>
         </html>";    //Cos del missatge. En aquest cas el text aplicat al formulari.
 

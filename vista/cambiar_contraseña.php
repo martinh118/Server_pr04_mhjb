@@ -1,13 +1,8 @@
 <?php 
-    require_once("../model/modelo_registro.php");
     include_once("../controlador/controlador_cambiar_contraseña.php");
 
-    $token = $_GET['token'];
-    $email = $_GET['email'];
-
-    $user = selectEmail($email)->fetch();
     
-    if($user['token'] == $token){
+    if(comprobarToken()){
 
 ?>
 
@@ -23,18 +18,12 @@
 </head>
 
 <body>
+
     <div>
 
         <!--Acciona l'arxiu 'controlador.php' quan es clica l'input amb type="submit" (botó d'enviar)-->
         <form action="../controlador/controlador_cambiar_contraseña.php" method="post" class="firstForm">
             <h2>Recuperar contrasenya</h2>
-            <div>
-
-                <label>* Contrasenya antiga</label>
-                <div>
-                    <input type="password" name="contraVieja" value="<?php echo isset($_POST['contraVieja']) ? $_POST['contraVieja'] : null; ?> ">
-                </div>
-            </div>
 
             <div>
                 <label>* Contrasenya nova</label>
@@ -91,7 +80,7 @@
         <!--Acciona l'arxiu 'controlador.php' quan es clica l'input amb type="submit" (botó d'enviar)-->
         <form action="../controlador/controlador_cambiar_contraseña.php" method="post" class="firstForm">
             <h2>ERROR: El token no coincideix</h2>
-
+            <p>Recarrega la pàgina, i si no funciona torna a intentar-ho.</p>
         </form>
 
         <form action="../vista/contraseña_olvidada.php" method="post" class="secondForm">
