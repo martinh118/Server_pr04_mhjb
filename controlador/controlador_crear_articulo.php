@@ -13,7 +13,6 @@ session_start();
 
 $articulos = seleccionarArticulos()->fetchAll();
 $num = count($articulos) + 1;
-echo $num;
 
 crearArticuloUsuario($num, $_POST['content'], $user);
 echo "Articulo creado.";

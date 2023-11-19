@@ -31,6 +31,24 @@ function selectUsuario($nom){
     }
 }
 
+function selectEmail($email){
+    try {
+        $connexio = conectar();
+        $statement = $connexio->prepare('SELECT * FROM users WHERE email_usuari = :email');
+        if ( !empty($email)) {
+            $statement->execute(
+                array(
+                    ':email' => $email
+                )
+            );
+            return $statement;
+        } else return;
+    } catch (PDOException $e) { //
+        // mostrarem els errors
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 
 /**
  * Insereix les dades de l'usuari a la taula 'users' de la base de dades. En cas que sigui correcte, mostra un missatge.
@@ -40,17 +58,18 @@ function selectUsuario($nom){
  * @param contra: Contrasenya de l'usuari
  * 
  */
-function registrarUsuario( $nom, $email, $contra){
+function registrarUsuario($nom, $email, $contra, $token){
     try {
         $connexio = conectar();
-        $statement = $connexio->prepare('INSERT INTO users (nom_usuari, email_usuari, contra) VALUES (:nombre, :gmail, :contra)');
+        $statement = $connexio->prepare('INSERT INTO users (nom_usuari, email_usuari, contra, token) VALUES (:nombre, :gmail, :contra, :token)');
         if ( !empty($nom) && !empty($email) && !empty($contra)) {
             $statement->execute(
                 array(
                     
                     ':nombre' => $nom,
                     ':gmail' => $email,
-                    ':contra' => $contra
+                    ':contra' => $contra,
+                    ':token' => $token
                 )
             );
             echo "El usuario se ha registrado correctamente<br><br>";

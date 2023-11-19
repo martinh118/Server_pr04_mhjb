@@ -61,7 +61,7 @@ function seleccionarArticulosUsuario($nom)
  * @param idart: ID de l'article.
  * 
  */
-function eliminarArticulo( $idart){
+function eliminarArticulo($idart){
     try {
         $connexio = conectar();
         $statement = $connexio->prepare('DELETE FROM articles WHERE ID = :idart');
@@ -70,7 +70,23 @@ function eliminarArticulo( $idart){
                 ':idart' =>$idart
             )
         );
-        return $statement;
+        reordenarArticulos();
+    } catch (PDOException $e) { //
+        // mostrarem els errors
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+function reordenarArticulos(){
+    try {
+        $connexio = conectar();
+        $statement = $connexio->prepare("ALTER TABLE articles DROP ID");
+        $statement->execute();
+        $statement = $connexio->prepare("ALTER TABLE articles AUTO_INCREMENT = 1");
+        $statement->execute();
+        $statement = $connexio->prepare("ALTER TABLE articles ADD ID int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+        $statement->execute();
+        
     } catch (PDOException $e) { //
         // mostrarem els errors
         echo "Error: " . $e->getMessage();

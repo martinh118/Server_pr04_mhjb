@@ -14,7 +14,7 @@
     <div>
 
         <!--Acciona l'arxiu 'controlador.php' quan es clica l'input amb type="submit" (botó d'enviar)-->
-        <form action="../controlador/controlador_crear_articulo.php" method="post" id="firstForm">
+        <form action="../controlador/controlador_crear_articulo.php" method="post" class="firstForm">
             <h2>Crear article</h2>
             <div>
 
@@ -32,7 +32,7 @@
 
         </form>
 
-        <form action=" ../controlador/controlador_sesion_iniciada.php" id="thirthForm">
+        <form action=" ../controlador/controlador_sesion_iniciada.php" class="thirthForm">
         <div>
                 <input type="submit" value="Inici" name="pagina">
             </div>

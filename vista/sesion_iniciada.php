@@ -7,22 +7,24 @@
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../estil/estils.css"> <!-- feu referència al vostre fitxer d'estils -->
 	<title>Paginació</title>
-</head>
 
-<body>
 	<?php
 	/**
 	 * @author Martín Hernan Jaime Bonvin
 	 * @version 1.0
 	 */
 
-	
-	require_once("../controlador/controlador_sesion_iniciada.php");
-	
+
+	include_once("../controlador/controlador_sesion_iniciada.php");
+
 	?>
+</head>
+
+<body>
+
 	<header>
 		<h2>Pt_04_Martín_Jaime </h2>
-		
+
 		<h3> <?php mostrarNombre(); ?> </h3>
 		<a href="../vista/index.vista.php">TANCAR SESSIÓ</a>
 	</header>
@@ -39,6 +41,7 @@
 		?>
 
 	</div>
+
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 *{box-sizing:border-box;}
 
-form#firstForm{
+form.firstForm{
 	width:300px;
 	padding:16px;
 	border-top-right-radius:10px;
@@ -9,7 +9,7 @@ form#firstForm{
 	background-color:rgb(147, 204, 241);
 }
 
-form#secondForm{
+form.secondForm{
 	width:300px;
 	padding:16px;
 
@@ -17,7 +17,7 @@ form#secondForm{
 	background-color:rgb(147, 204, 241);
 }
 
-form#thirthForm{
+form.thirthForm{
 	width:300px;
 	padding:16px;
 	border-bottom-left-radius: 10px;
@@ -26,7 +26,7 @@ form#thirthForm{
 	background-color:rgb(147, 204, 241);
 }
 
-form#secondForm input{
+form.secondForm input{
 	margin-top: -12px;
 }
 

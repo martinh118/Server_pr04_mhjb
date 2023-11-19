@@ -61,17 +61,17 @@ function comprobarExistencia()
 function comprobarExistenciaContraSesion($contra, $nom)
 {
     try {
-        $user = selectUsuario($nom)->fetchAll();
+        $user = selectUsuario($nom);
 
-        if (empty($user)) {
+        if (empty($user) || $user == null) {
             return;
         } else {
-            $results = $user;
-            foreach ($results as $user) {
-                if (password_verify($contra, $user['contra'])) {
-                    return "";
-                }
+            $user = $user->fetch();
+
+            if (password_verify($contra, $user['contra'])) {
+                return "";
             }
+
             return "La contrasenya no es la correcta.<br><br>";
         }
     } catch (PDOException $e) {

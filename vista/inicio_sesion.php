@@ -6,15 +6,14 @@
     <link rel="stylesheet" href="../estil/estil_inici_sessio.css" type="text/css">
     <meta charset="UTF-8" />
     <title></title>
-
-
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeLugkpAAAAAFJRWUNVxOvkVt6WnU7GKWmEgJlq" async defer></script>
 </head>
 
 <body>
     <div>
 
         <!--Acciona l'arxiu 'controlador.php' quan es clica l'input amb type="submit" (botó d'enviar)-->
-        <form action="../controlador/controlador_iniciar_sessio.php" method="post" id="firstForm">
+        <form action="../controlador/controlador_iniciar_sessio.php" method="post" class="firstForm">
             <h2>Inici sessió</h2>
             <div>
 
@@ -44,24 +43,37 @@
                 </div>
             </div>
 
+            <!-- Replace the variables below. -->
+            <script>
+                function onSubmit(token) {
+                    document.getElementById("demo-form").submit();
+                }
+            </script>
+            <br>
+
             <div>
                 <div>
                     <!-- Botó d'enviar la informació. Un cop clicat executarà l'arxiu 'controlador.php' especificat en action a l'obertura de l'etiqueta form-->
                     <input type="submit">
                 </div>
             </div>
-
-
         </form>
         </form>
 
-        <form action="../vista/index.vista.php" id="secondForm">
+        <form action="../vista/index.vista.php" class="secondForm">
             <div>
                 <input type="submit" value="Inici">
             </div>
         </form>
+        <form action="../vista/contraseña_olvidada.php" class="secondForm">
+            <div>
+                <input type="submit" value="Contrasenya oblidada">
+            </div>
+        </form>
+        
 
-        <form action="../vista/registro.php" id="thirthForm">
+
+        <form action="../vista/registro.php" class="thirthForm">
             <div>
                 <input type="submit" value="Encara no tens compte?">
             </div>

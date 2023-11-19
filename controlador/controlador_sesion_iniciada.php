@@ -61,7 +61,6 @@ function iniciarPagina()
             aplicarDatos($_SESSION["usuario"]);
             edicion();
 
-
             articulosUser();
             articulosPublicos();
 
@@ -106,7 +105,6 @@ function articulosUser()
 
         mostrarArtsUsers($quant, $pagina);
         crearPaginacion($total_paginas, $pagina);
-
     } catch (PDOException $e) { //
         // mostrarem els errors
         echo "Error: " . $e->getMessage();
@@ -121,7 +119,7 @@ function articulosPublicos()
         $total_paginas = ceil(count($quant) / $cantidadPagina);
         $pagina = paginas($total_paginas);
 
-        mostrarArts( $cantidadPagina, $pagina);
+        mostrarArts($cantidadPagina, $pagina);
         crearPaginacion($total_paginas, $pagina);
     } catch (PDOException $e) { //
         // mostrarem els errors
@@ -200,10 +198,9 @@ function mostrarArts($CANTIDAD, $pag)
 
                     $articulosInput .= "<li><strong>" . $a['ID'] . ".- </strong>" . $a['article'] . " ( <strong>" . $a['autor'] . "</strong> )";
                     $articulosInput .= "</li>";
-                } 
+                }
             }
             $articulosInput .= "</ul></section>";
-           
         }
         echo $articulosInput;
     } catch (PDOException $e) { //
@@ -229,14 +226,13 @@ function mostrarArtsUsers($arts, $pag)
             foreach ($articulos as $a) {
 
                 if ($a['autor'] == $_SESSION['usuario']) {
-                    $articulosInput .= "<li><strong> " . $a['ID'] . ".- </strong>" . $a['article'] . " ( <strong>" . $a['autor'] . " </strong>)";
-                    $articulosInput .= "&nbsp&nbsp<button><a  href='../controlador/controlador_sesion_iniciada.php?pagina=" . $pag . "&id= " . $a['ID'] . "&edit=" . "borrar" . "'>Borrar</a></button> &nbsp&nbsp";
-                    $articulosInput .= "<button><a href='../vista/editar_articulo.php?id= " . $a['ID']. "'>Editar</a></button>";
+                    $articulosInput .= "<li><strong> " . $a['ID'] . ".- </strong>" . htmlspecialchars($a['article']) . " ( <strong>" . $a['autor'] . " </strong>)";
+                    $articulosInput .= "&nbsp&nbsp<button id='borrar'><a  href='../controlador/controlador_sesion_iniciada.php?pagina=" . $pag . "&id= " . $a['ID'] . "&edit=" . "borrar" . "'>Borrar</a></button> &nbsp&nbsp";
+                    $articulosInput .= "<button><a href='../vista/editar_articulo.php?id= " . $a['ID'] . "'>Editar</a></button>";
                     $articulosInput .= "</li>";
                 }
             }
             $articulosInput .= "</ul></section>";
-            
         }
         echo $articulosInput;
     } catch (PDOException $e) { //
@@ -247,31 +243,19 @@ function mostrarArtsUsers($arts, $pag)
 ?>
 
 <?php
-
 /**
  * Depenent del que tingui l'entrada $_GET amb nom 'edit', esborra l'article o dona l'opció d'editar-la.
  * @param conexion: Connexió a la Base de dades.
  */
 function edicion()
 {
-    if (empty($_GET['edit'])) {
-        return;
-    } else {
-        if ($_GET['edit'] == 'borrar') {
-            eliminarArticulo($_GET['id']);
-        } else if ($_GET['edit'] == 'editar') {
-            editarArt();
-        }
+
+    if (isset($_GET['edit'])) {
+        $idart = $_GET['id'];
+        require_once('../model/modelo_sesion_iniciada.php');
+        eliminarArticulo($idart);
     }
 }
 
-
-/**
- * Edita l'article.
- * @param conexion: Connexió a la Base de dades.
- */
-function editarArt()
-{
-}
 
 ?>

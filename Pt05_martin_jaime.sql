@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `users`(
     nom_usuari text NOT NULL,
     email_usuari text NOT NULL,
     contra VARCHAR(512) NOT NULL,
+    token VARCHAR(50) NOT NULL,
     PRIMARY KEY (ID)
 );
 

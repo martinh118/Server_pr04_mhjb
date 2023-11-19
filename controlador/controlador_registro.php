@@ -29,8 +29,9 @@ function comprobarRegistro()
                 $nombre = $_POST['nom'];
                 $email = $_POST['email'];
                 $contra = password_hash($_POST['contra'], PASSWORD_DEFAULT);
+                $token = uniqid();
                 vaciarCampos();
-                registrarUsuario( $nombre, $email, $contra);
+                registrarUsuario( $nombre, $email, $contra, $token);
 
 
                 //$id =  getIDUser($conect, $nombre);

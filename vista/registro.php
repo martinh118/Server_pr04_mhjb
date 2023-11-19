@@ -14,7 +14,7 @@
     <div>
 
         <!--Acciona l'arxiu 'controlador.php' quan es clica l'input amb type="submit" (botó d'enviar)-->
-        <form action="../controlador/controlador_registro.php" method="post" id="firstForm">
+        <form action="../controlador/controlador_registro.php" method="post" class="firstForm">
             <h2>Crear un compte</h2>
             <div>
 
@@ -72,13 +72,13 @@
 
         </form>
 
-        <form action="../vista/index.vista.php" id="secondForm">
+        <form action="../vista/index.vista.php" class="secondForm">
             <div>
                 <input type="submit" value="Inici">
             </div>
         </form>
 
-        <form action="../vista/inicio_sesion.php" id="thirthForm">
+        <form action="../vista/inicio_sesion.php" class="thirthForm">
             <div>
                 <input type="submit" value="Ja tens compte?">
             </div>
