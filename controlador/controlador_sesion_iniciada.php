@@ -82,7 +82,11 @@ function iniciarPagina()
 
 
 <?php
-
+/**
+ * Fa la comprovació de a quina pàgina es truca.
+ * @param total_paginas: pàgina seleccionada
+ * @return pagina: numero de pàgina
+ */
 function paginas($total_paginas)
 {
     if (empty($_GET["pagina"]) || $_GET["pagina"] >  $total_paginas || $_GET["pagina"] <  1) {
@@ -94,7 +98,9 @@ function paginas($total_paginas)
     return $pagina;
 }
 
-
+/**
+ * Executa la visualització d'articles de l'usuari seleccionat i crea la paginació d'aquesta.
+ */
 function articulosUser()
 {
     try {
@@ -111,6 +117,9 @@ function articulosUser()
     }
 }
 
+/**
+ * Executa la visualització d'articles publics i dels altres usuaris i crea la paginació d'aquesta.
+ */
 function articulosPublicos()
 {
     try {
@@ -171,9 +180,7 @@ function crearPaginacion($paginas, $numPagina)
 <?php
 
 /**
- * A partir de la columna d'articles amb el nom de l'usuari actual, es mostraran els articles que té habilitats.
- * A més, afegeix les opcions d'eliminar i editar a cada article.
- * @param conect: Connexió a la Base de dades.
+ * Mostra tots els articles publics i dels usuaris que no sigui l'actual.
  * @param CANTIDAD: Quantitat d'articles mostrats per pàgina.
  * @param pag: Número de la pàgina seleccionat.
  */
@@ -210,6 +217,13 @@ function mostrarArts($CANTIDAD, $pag)
 }
 
 
+/**
+ * A partir de la columna d'articles amb el nom de l'usuari actual, es mostraran els articles que té habilitats.
+ * A més, afegeix les opcions d'eliminar i editar a cada article.
+ * @param arts: Connexió a la Base de dades.
+ * @param pag: Quantitat d'articles mostrats per pàgina.
+
+ */
 function mostrarArtsUsers($arts, $pag)
 {
     try {
@@ -244,8 +258,7 @@ function mostrarArtsUsers($arts, $pag)
 
 <?php
 /**
- * Depenent del que tingui l'entrada $_GET amb nom 'edit', esborra l'article o dona l'opció d'editar-la.
- * @param conexion: Connexió a la Base de dades.
+ * Elimina l'article seleccionat.
  */
 function edicion()
 {

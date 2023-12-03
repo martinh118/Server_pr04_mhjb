@@ -31,6 +31,11 @@ function selectUsuario($nom){
     }
 }
 
+/**
+ * selecciona l'usuari a partir de l'email.
+ * @param email: email de l'usuari.
+ * @return statenebt: dades de l'usuari seleccionat
+ */
 function selectEmail($email){
     try {
         $connexio = conectar();

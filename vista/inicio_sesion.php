@@ -43,6 +43,14 @@
                 </div>
             </div>
 
+            <input type="hidden" name="intentos_fallidos" value="<?php echo isset($_POST['intentos_fallidos']) ? $_POST['intentos_fallidos'] + 1 : 0; ?>">
+
+            <?php 
+            if(isset($_POST['intentos_fallidos'])){
+                if ($_POST['intentos_fallidos'] >= 2) : ?>
+                    <div class="g-recaptcha" data-sitekey="6LeLugkpAAAAAFJRWUNVxOvkVt6WnU7GKWmEgJlq"></div>
+                <?php endif; }?>
+
             <!-- Replace the variables below. -->
             <script>
                 function onSubmit(token) {
@@ -70,9 +78,12 @@
                 <input type="submit" value="Contrasenya oblidada">
             </div>
         </form>
-        
 
-
+        <form action="../controlador/iniciar_github.php" class="secondForm">
+            <div>
+                <input type="submit" value="Inicia amb GitHub">
+            </div>
+        </form>
         <form action="../vista/registro.php" class="thirthForm">
             <div>
                 <input type="submit" value="Encara no tens compte?">

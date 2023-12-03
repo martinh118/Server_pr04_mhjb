@@ -35,8 +35,8 @@ function comprobarExistencia()
                 window.location.replace("../vista/sesion_iniciada.php?nom=$nom&pagina=1");
                 </script>
                 EOT;
+
                 session_start();
-                $user = selectUsuario($nom);
                 $_SESSION["usuario"] = $nom;
 
                 echo ($script);
@@ -45,6 +45,25 @@ function comprobarExistencia()
     } catch (PDOException $e) { //
         // mostrarem els errors
         echo "Error: " . $e->getMessage();
+    }
+}
+
+?>
+
+<?php 
+//Funciò Captcha per mostrar la proba de que no sigui un robot.
+if ($_POST['intentos_fallidos'] > 3) {
+    $recaptcha_secret = '6LeLugkpAAAAAFJRWUNVxOvkVt6WnU7GKWmEgJlq'; // Reemplaza con tu clave secreta de reCAPTCHA
+
+    // Verifica reCAPTCHA
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}";
+    $recaptcha_data = json_decode(file_get_contents($recaptcha_url));
+
+    if (!$recaptcha_data->success) {
+        // reCAPTCHA no válido, maneja el error
+        echo "Error en reCAPTCHA. Vuelve a intentarlo.";
+        exit;
     }
 }
 
@@ -71,7 +90,6 @@ function comprobarExistenciaContraSesion($contra, $nom)
             if (password_verify($contra, $user['contra'])) {
                 return "";
             }
-
             return "La contrasenya no es la correcta.<br><br>";
         }
     } catch (PDOException $e) {

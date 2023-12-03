@@ -26,6 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 }
 
+/**
+ * Inicia el formulari per enviar el missatge al correu indicat per poder canviar de contrasenya.
+ * 
+ */
 function iniciar(){
     
     $error = "";
@@ -48,6 +52,12 @@ function iniciar(){
 
 }
 
+/**
+ * Comprova que els emails introduits siguin el mateix i els correctes.
+ * @param email: Comprovació de email 1
+ * @param reEmail: Comprovació de email 2
+ * @param token: token a enviar per fer el canvi de contrasenya.
+ */
 function comprobarEmail($email, $reEmail, $token){
     $user = selectEmail($email);
     $user = $user->fetch();
@@ -61,6 +71,13 @@ function comprobarEmail($email, $reEmail, $token){
         }else echo "Els dos emails han de ser iguals. <br>";
     }else echo "Email no registrado. <br>";
 }
+
+/**
+ * Realitza el enviament de correu electronic al correu indicat.
+ * @param correo: correu al qual s'enviarà el missatge
+ * @param nombre: Nom de l'usuari al qual s'enviarà el missatge.
+ * @param token: Token aplicat al link en el body del missatge.
+ */
 
 function enviarCorreo($correo, $nombre, $token){
 

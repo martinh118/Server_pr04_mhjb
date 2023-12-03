@@ -4,7 +4,10 @@ require_once("../model/modelo_contraseña.php");
 include_once('../vista/cambiar_contraseña.php');
 
 
-
+/**
+ * Quan es pasa per primer cop les dades, es guarden al "session".
+ * Si no detecta cap GET, fa les comprovacions per mostrar el formulari de recuperar contrasenya, i per fer el canvi de contrasenya.
+ */
 if (isset($_GET['token']) && isset($_GET['email'])) {
     try {
         $_SESSION['token'] = $_GET['token'];
@@ -37,6 +40,10 @@ if (isset($_GET['token']) && isset($_GET['email'])) {
     }
 }
 
+/**
+ * Comprova si el token a l'hora d'obrir la pàgina coincideix amb el que té l'usuari a la base de dades.
+ * @return Boolean: retorna true en cas de que hi coincideixi.
+ */
 function comprobarToken()
 {
     session_start();
@@ -46,6 +53,10 @@ function comprobarToken()
     return $user['token'] == $token ? true : false;
 }
 
+/**
+ * Fa les correctes comprovacions per verificar la contrasenya nova.
+ * @return String: En cas de que hi hagi un error, retorna el missatge d'aquest. En cas contrari retorna un string buit.  
+ */
 function comprobarContraseñasNuevas()
 {
     $nuevaContra = password_hash($_POST['contraNueva'], PASSWORD_DEFAULT);

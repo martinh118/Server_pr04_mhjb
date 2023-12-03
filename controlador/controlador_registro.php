@@ -30,7 +30,6 @@ function comprobarRegistro()
                 $email = $_POST['email'];
                 $contra = password_hash($_POST['contra'], PASSWORD_DEFAULT);
                 $token = uniqid();
-                vaciarCampos();
                 registrarUsuario( $nombre, $email, $contra, $token);
 
 
@@ -129,12 +128,4 @@ function comprobarDatosVacios()
 
 
 comprobarRegistro();
-?>
-<?php
-function vaciarCampos()
-{
-
-}
-
-
 ?>

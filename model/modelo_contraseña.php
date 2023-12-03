@@ -2,6 +2,12 @@
 
 include_once("modelo_principal.php");
 
+/**
+ * Canvia el token a la base de dades
+ * @param token: nou token
+ * @param email: email de l'usuari.
+ * 
+*/
 function cambiarToken($token, $email){
     try {
         $connexio = conectar();
@@ -19,6 +25,11 @@ function cambiarToken($token, $email){
     }
 }
 
+/**
+ * canvia la contrasenya de l'usuari
+ * @param email: email de l'usuari
+ * @param contra: nova contrasenya
+ */
 function cambioContraseña($email, $contra){
     try {
         $connexio = conectar();

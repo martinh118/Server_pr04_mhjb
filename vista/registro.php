@@ -78,6 +78,11 @@
             </div>
         </form>
 
+        <form action="../controlador/iniciar_github.php" class="secondForm">
+            <div>
+                <input type="submit" value="Inicia amb GitHub">
+            </div>
+        </form>
         <form action="../vista/inicio_sesion.php" class="thirthForm">
             <div>
                 <input type="submit" value="Ja tens compte?">

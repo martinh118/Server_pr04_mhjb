@@ -77,6 +77,9 @@ function eliminarArticulo($idart){
     }
 }
 
+/**
+ * Ordena els articles amb l'identificador adequat.
+ */
 function reordenarArticulos(){
     try {
         $connexio = conectar();
@@ -94,6 +97,11 @@ function reordenarArticulos(){
 }
 
 
+/**
+ * Edita l'article seleccionat
+ * @param idart: identiicador de l'article
+ * @param article: articles a modificar.
+ */
 function editarArticulo($idart, $article){
     try {
         $connexio = conectar();

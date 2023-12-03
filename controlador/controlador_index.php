@@ -28,9 +28,6 @@ function iniciar()
                 $pagina = $_GET["pagina"];
             }
 
-
-
-
             mostrarArts($cantidadPagina, $pagina);
             crearPaginacion($total_paginas, $pagina);
 
