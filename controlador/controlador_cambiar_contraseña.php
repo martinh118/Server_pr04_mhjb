@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Martín Hernan Jaime Bonvin
+ * @version 4.0
+ */
 require_once("../model/modelo_registro.php");
 require_once("../model/modelo_contraseña.php");
 include_once('../vista/cambiar_contraseña.php');
@@ -48,8 +52,16 @@ function comprobarToken()
 {
     session_start();
     $token = $_SESSION['token'];
-    $email = $_SESSION['email'];
-    $user = selectEmail($email)->fetch();
+    if (isset($_GET['token']) && isset($_GET['email'])) {
+        try {
+            $_SESSION['token'] = $_GET['token'];
+            $_SESSION['email'] = $_GET['email'];
+            $user = selectEmail($_SESSION['email'])->fetch();
+        } catch (PDOException $e) { //
+            // mostrarem els errors
+            echo "Error: " . $e->getMessage();
+        }
+    }
     return $user['token'] == $token ? true : false;
 }
 
